@@ -1,0 +1,24 @@
+server:
+  port: 8082
+
+spring:
+  application:
+    name: FreshRoute
+  datasource:
+    url: jdbc:postgresql://ep-super-tooth-aoohlkva-pooler.c-2.ap-southeast-1.aws.neon.tech/freshroute_db?sslmode=require
+    username: ur-username
+    password: ${DB_PASSWORD}
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql: true
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+
+logging:
+  level:
+    com.FreshRoute: INFO
+    org.hibernate.SQL: WARN
