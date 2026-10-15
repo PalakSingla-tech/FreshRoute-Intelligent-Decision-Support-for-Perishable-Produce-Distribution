@@ -1,0 +1,126 @@
+@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800;900&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&display=swap");
+
+@import "tailwindcss";
+
+/* Theme tokens live in tailwind.config.ts. */
+@config "../tailwind.config.ts";
+
+@layer base {
+  :root,
+  .dark,
+  [data-theme="dark"] {
+    color-scheme: dark;
+    --color-canvas: #09120C;
+    --color-surface: #101B14;
+    --color-card: #101B14;
+    --color-popover: #132118;
+    --color-foreground: #E8F0EA;
+    --color-primary: #22C55E;
+    --color-primary-fg: #031508;
+    --color-secondary: #16251B;
+    --color-muted: #16251B;
+    --color-muted-fg: #8FA393;
+    --color-accent: #1A2C20;
+    --color-border: rgba(74, 222, 128, 0.12);
+    --color-info: #0284C7;
+    --color-warning: #EAB308;
+    --color-danger: #EF4444;
+    --shadow-card: 0 18px 40px -20px rgba(0, 0, 0, 0.75);
+    --scrollbar-track: #09120C;
+    --scrollbar-thumb: #1C3322;
+  }
+
+  .light,
+  [data-theme="light"] {
+    color-scheme: light;
+    --color-canvas: #F5F7F4;
+    --color-surface: #FFFFFF;
+    --color-card: #FFFFFF;
+    --color-popover: #FFFFFF;
+    --color-foreground: #101C13;
+    --color-primary: #16A34A;
+    --color-primary-fg: #FFFFFF;
+    --color-secondary: #EBF1EC;
+    --color-muted: #F0F4F0;
+    --color-muted-fg: #4F6654;
+    --color-accent: #E2EDE4;
+    --color-border: rgba(22, 163, 74, 0.18);
+    --color-info: #0284C7;
+    --color-warning: #D97706;
+    --color-danger: #DC2626;
+    --shadow-card: 0 12px 30px -10px rgba(16, 40, 22, 0.08), 0 2px 6px rgba(0, 0, 0, 0.04);
+    --scrollbar-track: #F5F7F4;
+    --scrollbar-thumb: #C6D7C8;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  html {
+    @apply bg-canvas;
+  }
+
+  body {
+    @apply bg-canvas font-sans text-foreground antialiased selection:bg-primary/25 selection:text-primary;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: var(--font-heading, 'Outfit', 'Plus Jakarta Sans', sans-serif);
+  }
+
+  :where(p, span, li, h1, h2, h3, h4, h5, h6, a, button, label, td, th) {
+    overflow-wrap: anywhere;
+    word-break: break-word;
+  }
+
+  pre,
+  code {
+    overflow-x: auto;
+    white-space: pre;
+  }
+
+  /* Custom organic scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: var(--scrollbar-track);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--scrollbar-thumb);
+    border-radius: 9999px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    filter: brightness(1.2);
+  }
+
+  /* Light mode adaptations for opacity utility tokens */
+  .light [class*="border-white/"] {
+    border-color: rgba(22, 163, 74, 0.14) !important;
+  }
+  .light [class*="bg-white/"] {
+    background-color: rgba(22, 163, 74, 0.04) !important;
+  }
+  .light [class*="bg-black/"] {
+    background-color: rgba(235, 242, 236, 0.85) !important;
+  }
+  .light [class*="hover:bg-white/"]:hover {
+    background-color: rgba(22, 163, 74, 0.08) !important;
+  }
+
+  /* Animated transit dash flow on map routes */
+  @keyframes transitFlow {
+    from {
+      stroke-dashoffset: 40;
+    }
+    to {
+      stroke-dashoffset: 0;
+    }
+  }
+
+  .animate-transit-flow {
+    animation: transitFlow 2.5s linear infinite;
+  }
+}
